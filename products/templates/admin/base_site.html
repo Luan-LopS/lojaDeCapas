@@ -1,0 +1,39 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Painel de Controle{% endblock %}
+
+{% block branding %}
+    <div id="branding">
+        <!-- Nome do site alterado -->
+        <div id="site-name">
+            <a href="/admin/">Administração CenterKapas</a>  <!-- Alterado para o nome desejado -->
+        </div>
+
+        <!-- Botão de alternância de tema (claro/escuro) -->
+        <button class="theme-toggle">
+            <span class="visually-hidden theme-label-when-auto">Alternar tema (tema atual: automático)</span>
+            <span class="visually-hidden theme-label-when-light">Alternar tema (tema atual: claro)</span>
+            <span class="visually-hidden theme-label-when-dark">Alternar tema (tema atual: escuro)</span>
+            <svg aria-hidden="true" class="theme-icon-when-auto">
+                <use xlink:href="#icon-auto"></use>
+            </svg>
+            <svg aria-hidden="true" class="theme-icon-when-dark">
+                <use xlink:href="#icon-moon"></use>
+            </svg>
+            <svg aria-hidden="true" class="theme-icon-when-light">
+                <use xlink:href="#icon-sun"></use>
+            </svg>
+        </button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <h1>Bem-vindo ao painel de login da CenterKapas!</h1>
+        <form method="post" action="{% url 'admin:login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+{% endblock %}

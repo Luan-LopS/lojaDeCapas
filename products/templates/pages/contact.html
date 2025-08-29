@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Center Kapas</title>
+
+	<link rel="icon" type="image/png" href="{% static 'img/iconK.png' %}">
+	<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+	{% include 'pages/header.html' %}
+
+	<div class="cont">
+		<div class="contact container">
+			<!-- Contato -->
+			<section class=" py-5 mb-4">
+				<h2 class="text-center text-danger">Contato</h2>
+				<div class="row py-2 mt-4">
+					<div class="col text-center">
+						<h4 class="text-danger">Telefone</h4>
+						<a href="tel:+5590999999999" class="text-decoration-none text-light" target="_blank">
+							<i class="bi bi-phone"></i> +55 (99) 99999-9999
+						</a>
+					</div>
+
+					<div class="col text-center">
+						<h4 class="text-danger">WhatsApp</h4>
+						<a href="https://wa.me/5599999999" class="text-decoration-none text-light">
+							<i class="bi bi-whatsapp"></i> +55 (90) 99999-9999
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Endereço -->
+			<section class="adress text-center py-4">
+				<h2 class="text-danger mb-4">Endereço</h2>
+				<a href="https://www.google.com/maps?q=R+Chile,+968+-+Rebouças,+Curitiba+-+PR,+80215-170"
+					class="text-decoration-none text-light" target="_blank">
+					<p>Rua, numero - bairro, cidade - estado, cp</p>
+				</a>
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3602.714545329595!2d-49.2587012!3d-25.4478053!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce4f677bfd7ad%3A0xbab2e1e88f6e5d3e!2sR.%20Chile%2C%20968%20-%20Rebou%C3%A7as%2C%20Curitiba%20-%20PR%2C%2080215-170!5e0!3m2!1spt-BR!2sbr!4v1756350544563!5m2!1spt-BR!2sbr"
+					width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</section>
+
+			<!-- Formulário de Contato -->
+			<section class="form py-5">
+				<h2 class="text-center text-danger my-4">Formulário de Contato</h2>
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<form method="POST">
+							{% csrf_token %}
+							<div class="mb-3">
+								<input type="text" class="form-control" name="nome" placeholder="Nome" required>
+							</div>
+							<div class="mb-3">
+								<input type="tel" class="form-control" name="telefone" placeholder="Telefone" required>
+							</div>
+							<div class="mb-3">
+								<input type="text" class="form-control" name="endereco" placeholder="Endereço">
+							</div>
+							<div class="mb-3">
+								<input type="email" class="form-control" name="email" placeholder="E-mail" required>
+							</div>
+							<div class="mb-3">
+								<textarea class="form-control" name="mensagem" rows="4" placeholder="Mensagem"
+									required></textarea>
+							</div>
+							<button type="submit" class="btn btn-danger w-100 fs-5">Enviar</button>
+						</form>
+
+						<!-- Mensagens de Sucesso ou Erro -->
+						{% if messages %}
+						<div class="mt-3">
+							{% for message in messages %}
+							<div
+								class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+								{{ message }}
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	{% include 'pages/footer.html' %}
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
